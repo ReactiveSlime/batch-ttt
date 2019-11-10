@@ -1,5 +1,16 @@
 @echo off
 cls
+
+set "TL="
+set "TM="
+set "TR="
+set "ML="
+set "MM="
+set "MR="
+set "BL="
+set "BM="
+set "BR="
+
 set TL=A
 set TM=A
 set TR=A
@@ -42,7 +53,7 @@ goto choose
 :XTL
 cls
 
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
+if "TL" NEQ "A" echo Inalid Move. TL Is Used & pause & cls & call :display & goto choose
 set TL=X
 
 
