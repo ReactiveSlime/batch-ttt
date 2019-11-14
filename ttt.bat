@@ -2,7 +2,7 @@
 CLS
 
 REM gets latest version
-ECHO Getting Latest Version Of RactiveSlimes TTT
+ECHO Getting Latest Version
 CURL -o ttt.bat "https://raw.githubusercontent.com/ReactiveSlime/batch-ttt/master/ttt.bat?_=%random%" -L
 
 REM check if latest version is downloaded
@@ -19,6 +19,7 @@ GOTO SETUP
 ECHO|set /p="1">Version.txt
 CALL :UPDATE
 PAUSE
+CLS
 )
 
 :SETUP
@@ -348,5 +349,4 @@ ECHO.
 ECHO Added Auto Update
 ECHO Re-designed The Board
 ECHO Fixed Typos
-ECHO I Should Test Before Uploading
 goto :EOF
