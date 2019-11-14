@@ -1,15 +1,37 @@
 @ECHO off
 CLS
+
+REM gets latest version
+ECHO Getting Latest Version
+CURL -o ttt.bat "https://raw.githubusercontent.com/ReactiveSlime/batch-ttt/master/ttt.bat?_=%random%" -L
+
+REM check if latest version is downloaded
+CLS
+
+IF NOT EXIST version.txt (
+ECHO|set /p="0">Version.txt
+)
+SET CURREMT_BUILD=1
+SET /p BUILD=<version.txt
+IF %BUILD% EQU %CURREMT_BUILD% (
+GOTO SETUP
+) ELSE (
+ECHO|set /p="1">Version.txt
+CALL UPDATE
+PAUSE
+)
+
+:SETUP
 SETLOCAL enableDelayedExpansion
-SET TL=A
-SET TM=A
-SET TR=A
-SET ML=A
-SET MM=A
-SET MR=A
-SET BL=A
-SET BM=A
-SET BR=A
+SET A1=1
+SET A2=2
+SET A3=3
+SET A4=4
+SET A5=5
+SET A6=6
+SET A7=7
+SET A8=8
+SET A9=9
 
 
 
@@ -17,141 +39,142 @@ CALL :display
 REM X Controlls
 :XCHOOSE
 SET /p CHOOSE_X="Place Your Piece (X): "
-IF /i "%CHOOSE_X%" == "TL" GOTO XTL
-IF /i "%CHOOSE_X%" == "TM" GOTO XTM
-IF /i "%CHOOSE_X%" == "TR" GOTO XTR
-IF /i "%CHOOSE_X%" == "ML" GOTO XML
-IF /i "%CHOOSE_X%" == "MM" GOTO XMM
-IF /i "%CHOOSE_X%" == "MR" GOTO XMR
-IF /i "%CHOOSE_X%" == "BL" GOTO XBL
-IF /i "%CHOOSE_X%" == "BM" GOTO XBM
-IF /i "%CHOOSE_X%" == "BR" GOTO XBR
+IF /i "%CHOOSE_X%" == "9" GOTO X9
+IF /i "%CHOOSE_X%" == "8" GOTO X8
+IF /i "%CHOOSE_X%" == "7" GOTO X7
+IF /i "%CHOOSE_X%" == "6" GOTO X6
+IF /i "%CHOOSE_X%" == "5" GOTO X5
+IF /i "%CHOOSE_X%" == "4" GOTO X4
+IF /i "%CHOOSE_X%" == "3" GOTO X3
+IF /i "%CHOOSE_X%" == "2" GOTO X2
+IF /i "%CHOOSE_X%" == "1" GOTO X1
+IF /i "%CHOOSE_X%" == "Q" EXIT
 ECHO Invalid Option
 GOTO XCHOOSE
 
-:XTL
+:X1
 CLS
-IF "%TL%" NEQ "A" (
-ECHO Inalid Move. TL Is Used
+IF "%A1%" NEQ "1" (
+ECHO Invalid Move. 1 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET TL=X
+SET A1=X
 CALL :DISPLAY
-REM ECHO !TL!
+REM ECHO !A1!
 GOTO OCHOOSE
 )
 
-:XTM
+:X2
 CLS
-IF "%TM%" NEQ "A" (
-ECHO Inalid Move. TM Is Used
+IF "%A2%" NEQ "2" (
+ECHO Invalid Move. TM Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET TM=X
-CALL :DISPLAY
-GOTO OCHOOSE
-)
-
-:XTR
-CLS
-IF "%TR%" NEQ "A" (
-ECHO Inalid Move. TR Is Used
-PAUSE
-CLS
-CALL :DISPLAY
-GOTO XCHOOSE
-) ELSE (
-SET TR=X
+SET A2=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XML
+:X3
 CLS
-IF "%ML%" NEQ "A" (
-ECHO Inalid Move. ML Is Used
+IF "%A3%" NEQ "3" (
+ECHO Invalid Move. 3 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET ML=X
+SET A3=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XMM
+:X4
 CLS
-IF "%MM%" NEQ "A" (
-ECHO Inalid Move. MM Is Used
+IF "%A4%" NEQ "4" (
+ECHO Invalid Move. ML Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET MM=X
+SET A4=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XMR
+:X5
 CLS
-IF "%MR%" NEQ "A" (
-ECHO Inalid Move. MR Is Used
+IF "%A5%" NEQ "5" (
+ECHO Invalid Move. 5 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET MR=X
+SET A5=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XBL
+:X6
 CLS
-IF "%BL%" NEQ "A" (
-ECHO Inalid Move. BL Is Used
+IF "%A6%" NEQ "6" (
+ECHO Invalid Move. 6 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET BL=X
+SET A6=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XBM
+:X7
 CLS
-IF "%BM%" NEQ "A" (
-ECHO Inalid Move. BM Is Used
+IF "%A7%" NEQ "7" (
+ECHO Invalid Move. 7 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET BM=X
+SET A7=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
 
-:XBR
+:X8
 CLS
-IF "%BR%" NEQ "A" (
-ECHO Inalid Move. BR Is Used
+IF "%A8%" NEQ "8" (
+ECHO Invalid Move. 8 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO XCHOOSE
 ) ELSE (
-SET BR=X
+SET A8=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
+
+:X9
+CLS
+IF "%A9%" NEQ "9" (
+ECHO Invalid Move. 9 Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET A9=X
 CALL :DISPLAY
 GOTO OCHOOSE
 )
@@ -160,166 +183,169 @@ REM O Controlls
 
 :OCHOOSE
 SET /p CHOOSE_O="Place Your Piece (O): "
-IF /i "%CHOOSE_O%" == "TL" GOTO OTL
-IF /i "%CHOOSE_O%" == "TM" GOTO OTM
-IF /i "%CHOOSE_O%" == "TR" GOTO OTR
-IF /i "%CHOOSE_O%" == "ML" GOTO OML
-IF /i "%CHOOSE_O%" == "MM" GOTO OMM
-IF /i "%CHOOSE_O%" == "MR" GOTO OMR
-IF /i "%CHOOSE_O%" == "BL" GOTO OBL
-IF /i "%CHOOSE_O%" == "BM" GOTO OBM
-IF /i "%CHOOSE_O%" == "BR" GOTO OBR
+IF /i "%CHOOSE_O%" == "9" GOTO O9
+IF /i "%CHOOSE_O%" == "8" GOTO O8
+IF /i "%CHOOSE_O%" == "7" GOTO O7
+IF /i "%CHOOSE_O%" == "6" GOTO O6
+IF /i "%CHOOSE_O%" == "5" GOTO O5
+IF /i "%CHOOSE_O%" == "4" GOTO O4
+IF /i "%CHOOSE_O%" == "3" GOTO O3
+IF /i "%CHOOSE_O%" == "2" GOTO O2
+IF /i "%CHOOSE_O%" == "1" GOTO O1
+IF /i "%CHOOSE_O%" == "Q" EXIT
 ECHO Invalid Option
 GOTO choose
 
-:OTL
+:O1
 CLS
-IF "%TL%" NEQ "A" (
-ECHO Inalid Move. TL Is Used
+IF "%A1%" NEQ "1" (
+ECHO Invalid Move. 1 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET TL=O
+SET A1=O
 CALL :DISPLAY
 REM ECHO !TL!
 GOTO XCHOOSE
 )
 
-:OTM
+:O2
 CLS
-IF "%TM%" NEQ "A" (
-ECHO Inalid Move. TM Is Used
+IF "%A2%" NEQ "2" (
+ECHO Invalid Move. 2 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET TM=O
+SET A2=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OTR
+:O3
 CLS
-IF "%TR%" NEQ "A" (
-ECHO Inalid Move. TR Is Used
+IF "%A3%" NEQ "3" (
+ECHO Invalid Move. 3 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET TR=O
+SET A3=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OML
+:O4
 CLS
-IF "%ML%" NEQ "A" (
-ECHO Inalid Move. ML Is Used
+IF "%A4%" NEQ "4" (
+ECHO Invalid Move. 4 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET ML=O
+SET A4=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OMM
+:O5
 CLS
-IF "%MM%" NEQ "A" (
-ECHO Inalid Move. MM Is Used
+IF "%A5%" NEQ "5" (
+ECHO Invalid Move. MM Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET MM=O
+SET A5=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OMR
+:O6
 CLS
-IF "%MR%" NEQ "A" (
-ECHO Inalid Move. MR Is Used
+IF "%A6%" NEQ "6" (
+ECHO Invalid Move. 6 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET MR=O
+SET A6=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OBL
+:O7
 CLS
-IF "%BL%" NEQ "A" (
-ECHO Inalid Move. BL Is Used
+IF "%A7%" NEQ "7" (
+ECHO Invalid Move. 7 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET BL=O
+SET A7=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OBM
+:O8
 CLS
-IF "%BM%" NEQ "A" (
-ECHO Inalid Move. BM Is Used
+IF "%A8%" NEQ "8" (
+ECHO Invalid Move. 8 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET BM=O
+SET A8=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
-:OBR
+:O9
 CLS
-IF "%BR%" NEQ "A" (
-ECHO Inalid Move. BR Is Used
+IF "%A9%" NEQ "9" (
+ECHO Invalid Move. 9 Is Used
 PAUSE
 CLS
 CALL :DISPLAY
 GOTO OCHOOSE
 ) ELSE (
-SET BR=O
+SET A9=O
 CALL :DISPLAY
 GOTO XCHOOSE
 )
 
 :DISPLAY
-ECHO Slots with A is an open slot
-ECHO X goes first
-ECHO.
-ECHO Placement Names
-ECHO ^|--^|--^|--^|
-ECHO ^|TL^|TM^|TR^|
-ECHO ^|--^|--^|--^|
-ECHO ^|ML^|MM^|MR^|
-ECHO ^|--^|--^|--^|
-ECHO ^|BL^|BM^|BR^|
-ECHO ^|--^|--^|--^|
-ECHO.
+ECHO Press Q then enter to exit anytime
 ECHO The board
-ECHO ^|-^|-^|-^|
-ECHO ^|%TL%^|%TM%^|%TR%^|
-ECHO ^|-^|-^|-^|
-ECHO ^|%ML%^|%MM%^|%MR%^|
-ECHO ^|-^|-^|-^|
-ECHO ^|%BL%^|%BM%^|%BR%^|
-ECHO ^|-^|-^|-^|
+ECHO +-----------+
+ECHO ^|   ^|   ^|   ^|
+ECHO ^| %A7% ^| %A8% ^| %A9% ^|
+ECHO ^|   ^|   ^|   ^|
+ECHO ^|---^|---^|---^|
+ECHO ^|   ^|   ^|   ^|
+ECHO ^| %A4% ^| %A5% ^| %A6% ^|
+ECHO ^|   ^|   ^|   ^|
+ECHO ^|---^|---^|---^|
+ECHO ^|   ^|   ^|   ^|
+ECHO ^| %A1% ^| %A2% ^| %A3% ^|
+ECHO ^|   ^|   ^|   ^|
+ECHO +-----------+ 
 ECHO.
-
 GOTO :EOF
+
+:UPDATE
+ECHO -----UPDATE 1-----
+ECHO.
+ECHO Added Auto Update
+ECHO Re-designed The Board
+ECHO Fixed Typos
+goto :OEF
