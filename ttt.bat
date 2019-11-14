@@ -1,123 +1,325 @@
-@echo off
-cls
+@ECHO off
+CLS
+SETLOCAL enableDelayedExpansion
+SET TL=A
+SET TM=A
+SET TR=A
+SET ML=A
+SET MM=A
+SET MR=A
+SET BL=A
+SET BM=A
+SET BR=A
 
-set "TL="
-set "TM="
-set "TR="
-set "ML="
-set "MM="
-set "MR="
-set "BL="
-set "BM="
-set "BR="
 
-set TL=A
-set TM=A
-set TR=A
-set ML=A
-set MM=A
-set MR=A
-set BL=A
-set BM=A
-set BR=A
 
-echo Slots with A is an open slot
-echo X goes first
-echo.
-echo Placement Names
-echo ^|--^|--^|--^|
-echo ^|TL^|TM^|TR^|
-echo ^|--^|--^|--^|
-echo ^|ML^|MM^|MR^|
-echo ^|--^|--^|--^|
-echo ^|BL^|BM^|BR^|
-echo ^|--^|--^|--^|
-echo.
-
-call :display
-
-:choose
-set /p choose_x="Place Your Piece: "
-if /i "%choose_x%" == "TL" goto XTL
-if /i "%choose_x%" == "TM" goto XTM
-if /i "%choose_x%" == "TR" goto XTR
-if /i "%choose_x%" == "ML" goto XML
-if /i "%choose_x%" == "MM" goto XMM
-if /i "%choose_x%" == "MR" goto XMR
-if /i "%choose_x%" == "BL" goto XBL
-if /i "%choose_x%" == "BM" goto XBM
-if /i "%choose_x%" == "BR" goto XBR
-echo Invalid Option
-goto choose
+CALL :display
+REM X Controlls
+:XCHOOSE
+SET /p CHOOSE_X="Place Your Piece (X): "
+IF /i "%CHOOSE_X%" == "TL" GOTO XTL
+IF /i "%CHOOSE_X%" == "TM" GOTO XTM
+IF /i "%CHOOSE_X%" == "TR" GOTO XTR
+IF /i "%CHOOSE_X%" == "ML" GOTO XML
+IF /i "%CHOOSE_X%" == "MM" GOTO XMM
+IF /i "%CHOOSE_X%" == "MR" GOTO XMR
+IF /i "%CHOOSE_X%" == "BL" GOTO XBL
+IF /i "%CHOOSE_X%" == "BM" GOTO XBM
+IF /i "%CHOOSE_X%" == "BR" GOTO XBR
+ECHO Invalid Option
+GOTO XCHOOSE
 
 :XTL
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used & pause & cls & call :display & goto choose
-set TL=X
-
+CLS
+IF "%TL%" NEQ "A" (
+ECHO Inalid Move. TL Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET TL=X
+CALL :DISPLAY
+REM ECHO !TL!
+GOTO OCHOOSE
+)
 
 :XTM
-cls
-
-if "TM" NEQ "A" echo Inalid Move. TM Is Used
-set TM=X
+CLS
+IF "%TM%" NEQ "A" (
+ECHO Inalid Move. TM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET TM=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XTR
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%TR%" NEQ "A" (
+ECHO Inalid Move. TR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET TR=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XML
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%ML%" NEQ "A" (
+ECHO Inalid Move. ML Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET ML=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XMM
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%MM%" NEQ "A" (
+ECHO Inalid Move. MM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET MM=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XMR
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%MR%" NEQ "A" (
+ECHO Inalid Move. MR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET MR=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XBL
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%BL%" NEQ "A" (
+ECHO Inalid Move. BL Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET BL=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XBM
-cls
-
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
-
+CLS
+IF "%BM%" NEQ "A" (
+ECHO Inalid Move. BM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET BM=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
 :XBR
-cls
+CLS
+IF "%BR%" NEQ "A" (
+ECHO Inalid Move. BR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO XCHOOSE
+) ELSE (
+SET BR=X
+CALL :DISPLAY
+GOTO OCHOOSE
+)
 
-if "TL" NEQ "A" echo Inalid Move. TL Is Used
-set TL=X
+REM O Controlls
 
-:display
-echo The board
-echo ^|-^|-^|-^|
-echo ^|%TL%^|%TM%^|%TR%^|
-echo ^|-^|-^|-^|
-echo ^|%ML%^|%MM%^|%MR%^|
-echo ^|-^|-^|-^|
-echo ^|%BL%^|%BM%^|%BR%^|
-echo ^|-^|-^|-^|
-goto :EOF
+:OCHOOSE
+SET /p CHOOSE_O="Place Your Piece (O): "
+IF /i "%CHOOSE_O%" == "TL" GOTO OTL
+IF /i "%CHOOSE_O%" == "TM" GOTO OTM
+IF /i "%CHOOSE_O%" == "TR" GOTO OTR
+IF /i "%CHOOSE_O%" == "ML" GOTO OML
+IF /i "%CHOOSE_O%" == "MM" GOTO OMM
+IF /i "%CHOOSE_O%" == "MR" GOTO OMR
+IF /i "%CHOOSE_O%" == "BL" GOTO OBL
+IF /i "%CHOOSE_O%" == "BM" GOTO OBM
+IF /i "%CHOOSE_O%" == "BR" GOTO OBR
+ECHO Invalid Option
+GOTO choose
+
+:OTL
+CLS
+IF "%TL%" NEQ "A" (
+ECHO Inalid Move. TL Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET TL=O
+CALL :DISPLAY
+REM ECHO !TL!
+GOTO XCHOOSE
+)
+
+:OTM
+CLS
+IF "%TM%" NEQ "A" (
+ECHO Inalid Move. TM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET TM=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OTR
+CLS
+IF "%TR%" NEQ "A" (
+ECHO Inalid Move. TR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET TR=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OML
+CLS
+IF "%ML%" NEQ "A" (
+ECHO Inalid Move. ML Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET ML=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OMM
+CLS
+IF "%MM%" NEQ "A" (
+ECHO Inalid Move. MM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET MM=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OMR
+CLS
+IF "%MR%" NEQ "A" (
+ECHO Inalid Move. MR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET MR=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OBL
+CLS
+IF "%BL%" NEQ "A" (
+ECHO Inalid Move. BL Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET BL=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OBM
+CLS
+IF "%BM%" NEQ "A" (
+ECHO Inalid Move. BM Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET BM=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:OBR
+CLS
+IF "%BR%" NEQ "A" (
+ECHO Inalid Move. BR Is Used
+PAUSE
+CLS
+CALL :DISPLAY
+GOTO OCHOOSE
+) ELSE (
+SET BR=O
+CALL :DISPLAY
+GOTO XCHOOSE
+)
+
+:DISPLAY
+ECHO Slots with A is an open slot
+ECHO X goes first
+ECHO.
+ECHO Placement Names
+ECHO ^|--^|--^|--^|
+ECHO ^|TL^|TM^|TR^|
+ECHO ^|--^|--^|--^|
+ECHO ^|ML^|MM^|MR^|
+ECHO ^|--^|--^|--^|
+ECHO ^|BL^|BM^|BR^|
+ECHO ^|--^|--^|--^|
+ECHO.
+ECHO The board
+ECHO ^|-^|-^|-^|
+ECHO ^|%TL%^|%TM%^|%TR%^|
+ECHO ^|-^|-^|-^|
+ECHO ^|%ML%^|%MM%^|%MR%^|
+ECHO ^|-^|-^|-^|
+ECHO ^|%BL%^|%BM%^|%BR%^|
+ECHO ^|-^|-^|-^|
+ECHO.
+
+GOTO :EOF
